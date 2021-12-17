@@ -5,8 +5,7 @@ using PyCall
 using DelimitedFiles
 
 
-function count_pairs!(i, d2, counts)
-    dis = sqrt(d2)
+function count_pairs!(i, counts)
     counts[i] += 1
     return counts
 end 
@@ -23,7 +22,7 @@ function compute_filtered_density(data, box_size, rmax)
 
     DD = map_pairwise!(
         (x, y, i, j, d2, DD) ->
-        count_pairs!(i, d2, DD),
+        count_pairs!(i, DD),
         DD, box, cl,
         parallel=true
     )
