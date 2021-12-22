@@ -1,6 +1,9 @@
 from julia.api import Julia
 import numpy as np
 import matplotlib.pyplot as plt
+from os import environ
+
+environ['JULIA_NUM_THREADS'] = '1'
 
 # import Julia modules
 jl = Julia(compiled_modules=False)

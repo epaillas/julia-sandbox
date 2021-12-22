@@ -20,8 +20,8 @@ function compute_filtered_density(data, box_size, rmax)
     cl = CellList(positions, box)
     DD = zeros(Int, npos);
 
-    DD = map_pairwise!(
-        (x, y, i, j, d2, DD) ->
+    map_pairwise!(
+        (x, y, i, j, d2, output) ->
         count_pairs!(i, DD),
         DD, box, cl,
         parallel=true
