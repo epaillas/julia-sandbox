@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from os import environ
 
-environ['JULIA_NUM_THREADS'] = '1'
+environ['JULIA_NUM_THREADS'] = '4'
 
 # import Julia modules
 jl = Julia(compiled_modules=False)
@@ -25,9 +25,11 @@ Main.rmax = rmax
 # compute density PDF using Julia module
 delta = jl.eval("compute_filtered_density(data, box_size, rmax)")
 
+print(np.shape(delta))
+
 # plot the results
 fig, ax = plt.subplots(figsize=(4.5, 4.5))
-ax.hist(delta, bins=50, density=True)
+ax.hist(delta, bins=100, density=True)
 
 ax.set_xlabel(r'$\Delta(R = 20\, h^{-1}{\rm Mpc})$', fontsize=15)
 ax.set_ylabel('PDF', fontsize=15)
